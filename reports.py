@@ -56,12 +56,13 @@ def get_line_number_by_title(file_name, title):
     raise ValueError("No such game!")
 
 
-# Bonus Function python bubble sort
+# Bonus Function
 def sort_abc(file_name):
     titles = [row["title"] for row in get_tabel(file_name)]
     return bubble_sort(titles)
 
 
+# Python bubble sort
 def bubble_sort(list):
     for item in list:
         for i in range(len(list) - 1):
@@ -73,6 +74,7 @@ def bubble_sort(list):
 def get_genres(file_name):
     genres = list(set([row["genre"] for row in get_tabel(file_name)]))
     return bubble_sort(genres)
+
 
 def when_was_top_sold_fps(file_name):
     max_copies = 0
