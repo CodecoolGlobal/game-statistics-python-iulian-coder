@@ -51,14 +51,38 @@ def get_line_number_by_title(file_name, title):
     counter = 0
     for row in get_tabel(file_name):
         counter += 1
-    if row['title'] == title:
-        return counter
+        if row['title'] == title:
+            return counter
     raise ValueError("No such game!")
 
-# Bonus Function
+
+# Bonus Function python bubble sort
 def sort_abc(file_name):
-    tabel = get_tabel(file_name)
-    for row in tabel:
-        for i in range(len(tabel - 1)
+    titles = [row["title"] for row in get_tabel(file_name)]
+    return bubble_sort(titles)
 
 
+def bubble_sort(list):
+    for item in list:
+        for i in range(len(list) - 1):
+            if list[i] > list[i+1]:
+                list[i], list[i+1] = list[i+1], list[i]
+    return list
+
+
+def get_genres(file_name):
+    genres = list(set([row["genre"] for row in get_tabel(file_name)]))
+    return bubble_sort(genres)
+
+def when_was_top_sold_fps(file_name):
+    max_copies = 0
+    top_sold_year = None
+    for row in get_tabel(file_name):
+        acutal_copies = float(row["copies"])
+        if row["genre"] == "First-person shooter" and acutal_copies > max_copies:
+            max_copies = acutal_copies
+            top_sold_year = int(row["year"])
+    if top_sold_year:
+        return top_sold_year
+    else:
+        raise ValueError("There is no FPS game!")
